@@ -1,10 +1,14 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "design-intelligence"
 version = "1.0.0"
 description = "Comprehensive design intelligence capability with specialized agents and knowledge base"
 readme = "README.md"
 requires-python = ">=3.11"
-license = {text = "MIT"}
+license = "MIT"
 authors = [
     {name = "Amplifier Team"}
 ]
@@ -13,6 +17,21 @@ authors = [
 homepage = "https://github.com/microsoft/amplifier"
 repository = "https://github.com/microsoft/amplifier"
 documentation = "https://github.com/microsoft/amplifier/tree/main/amplifier-collection-design-intelligence"
+
+[tool.setuptools]
+# This is a data-only package (markdown files, no Python code)
+packages = []
+include-package-data = true
+
+[tool.setuptools.package-data]
+"*" = [
+    "**/*.md",
+    "**/*.toml",
+    "LICENSE",
+    "CODE_OF_CONDUCT.md",
+    "SECURITY.md",
+    "SUPPORT.md"
+]
 
 [tool.amplifier.collection]
 author = "Amplifier Team"
