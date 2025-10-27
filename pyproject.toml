@@ -1,0 +1,28 @@
+[project]
+name = "design-intelligence"
+version = "1.0.0"
+description = "Comprehensive design intelligence capability with specialized agents and knowledge base"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Amplifier Team"}
+]
+
+[project.urls]
+homepage = "https://github.com/microsoft/amplifier"
+repository = "https://github.com/microsoft/amplifier"
+documentation = "https://github.com/microsoft/amplifier/tree/main/amplifier-collection-design-intelligence"
+
+[tool.amplifier.collection]
+author = "Amplifier Team"
+capabilities = [
+    "Seven specialized design agents (system architecture, components, animation, layout, art direction, responsive, voice)",
+    "Comprehensive design philosophy: 9 Dimensions, 5 Pillars, 4 Layers framework",
+    "Design knowledge base: color theory, typography, animation principles, accessibility",
+    "Established design protocols: component creation, checklists, wireframes, anti-patterns",
+    "Transform raw design ideas into refined solutions through collaborative intelligence"
+]
+
+[tool.amplifier.collection.requires]
+foundation = "^1.0.0"
