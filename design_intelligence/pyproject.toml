@@ -24,7 +24,7 @@ packages = {find = {}}
 
 [tool.setuptools.package-data]
 # Include all markdown and metadata files
-design_intelligence = ["*.toml"]
+"*" = ["*.md", "*.toml"]
 
 [tool.amplifier.collection]
 author = "Amplifier Team"
