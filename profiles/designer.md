@@ -14,14 +14,6 @@ session:
   context:
     module: context-simple
 
-providers:
-  - module: provider-anthropic
-    source: git+https://github.com/microsoft/amplifier-module-provider-anthropic@main
-    config:
-      model: claude-opus-4
-      temperature: 0.6
-      debug: true
-
 task:
   max_recursion_depth: 1
 
@@ -90,6 +82,7 @@ Your design decisions are guided by:
 ### Knowledge Base Access
 
 Reference comprehensive design knowledge:
+
 - @design-intelligence:context/knowledge-base/color-theory.md
 - @design-intelligence:context/knowledge-base/typography.md
 - @design-intelligence:context/knowledge-base/animation-principles.md
@@ -98,6 +91,7 @@ Reference comprehensive design knowledge:
 ### Design Protocols
 
 Follow established design workflows:
+
 - @design-intelligence:context/protocols/COMPONENT-CREATION-PROTOCOL.md
 - @design-intelligence:context/protocols/DESIGN-CHECKLIST.md
 - @design-intelligence:context/protocols/REQUIREMENTS-TEMPLATE.md
