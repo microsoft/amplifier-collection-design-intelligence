@@ -11,6 +11,7 @@ This protocol ensures every design decision follows FRAMEWORK.md methodology. Ru
 Before creating ANY new component or feature, validate:
 
 ### 1. Purpose Validation
+
 - [ ] **Why does this need to exist?** (Can articulate in 1-2 sentences)
 - [ ] **What problem does it solve?** (Specific user need identified)
 - [ ] **Is this the simplest solution?** (Considered alternatives)
@@ -18,6 +19,7 @@ Before creating ANY new component or feature, validate:
 **RED FLAG**: If you can't clearly articulate the "why" in one sentence, STOP and clarify purpose first.
 
 ### 2. Design System Audit
+
 - [ ] **All CSS variables will be defined** (Check globals.css before use)
 - [ ] **All utility classes will be defined** (No undefined `.studio-*` classes)
 - [ ] **Font families are from approved set** (Sora, Geist Sans, Geist Mono, Source Code Pro)
@@ -27,6 +29,7 @@ Before creating ANY new component or feature, validate:
 **RED FLAG**: If using a new CSS variable, define it in globals.css FIRST, then use it.
 
 ### 3. Context Validation
+
 - [ ] **Desktop context considered** (If applicable)
 - [ ] **Mobile context considered** (If applicable)
 - [ ] **Touch targets sized appropriately** (44x44px minimum if interactive)
@@ -42,11 +45,13 @@ Before creating ANY new component or feature, validate:
 For EVERY component, validate these dimensions apply correctly:
 
 #### 1. Style
+
 - [ ] Visual language is consistent with project aesthetic (see `.design/AESTHETIC-GUIDE.md`)
 - [ ] No emojis as UI elements (unless project aesthetic explicitly allows)
 - [ ] No Unicode characters as icons (use proper Icon component)
 
 #### 2. Motion
+
 - [ ] Timing is appropriate:
   - `<100ms` for hover states (instant feedback)
   - `100-300ms` for button presses (responsive)
@@ -56,36 +61,43 @@ For EVERY component, validate these dimensions apply correctly:
 - [ ] Respects `prefers-reduced-motion`
 
 #### 3. Voice
+
 - [ ] Copy is clear and concise
 - [ ] No jargon
 - [ ] Error messages are helpful, not blaming
 - [ ] Tone adapts to context (serious for errors, friendly for success)
 
 #### 4. Space
+
 - [ ] White space creates hierarchy
 - [ ] Proximity shows relationships
 - [ ] Layout guides attention
 - [ ] Can remove 20% without losing function (simplicity test)
 
 #### 5. Color
+
 - [ ] Contrast ratio validated (4.5:1 minimum for text, 3:1 for UI components)
 - [ ] Color choices have documented rationale
 - [ ] Cultural context considered
 
 #### 6. Typography
+
 - [ ] Hierarchy is clear (size, weight, color, space)
 - [ ] Line height is 1.125-1.5× font size
 - [ ] Maximum 2-3 typefaces used
 
 #### 7. Proportion
+
 - [ ] Scale relationships feel balanced
 - [ ] Visual adjustment applied where needed
 
 #### 8. Texture
+
 - [ ] Texture serves purpose (not decoration)
 - [ ] Doesn't reduce readability
 
 #### 9. Body (Ergonomics)
+
 - [ ] Touch targets are 44×44px minimum (Apple) or 48×48dp (Android)
 - [ ] Thumb zones considered for mobile
 - [ ] Keyboard navigation works
@@ -97,24 +109,29 @@ For EVERY component, validate these dimensions apply correctly:
 Before finalizing any component:
 
 ### 1. Purpose Drives Execution ✓
+
 - Can explain WHY this variant/approach was chosen (not just "looks good")
 
 ### 2. Craft Embeds Care ✓
+
 - Edge cases handled (error, loading, empty states)
 - Details refined (timing, spacing, contrast)
 - No arbitrary values
 
 ### 3. Constraints Enable Creativity ✓
+
 - Works within design system
 - Locked properties respected
 - Found creativity within constraints
 
 ### 4. Intentional Incompleteness ✓
+
 - Room for user expression
 - Content customizable
 - Not over-engineered
 
 ### 5. Design for Humans ✓
+
 - Keyboard navigable
 - Screen reader compatible
 - Color contrast validated
@@ -127,21 +144,27 @@ Before finalizing any component:
 After writing code, run these validators:
 
 ### 1. CSS Variable Validation
+
 ```bash
 npm run validate:tokens
 ```
+
 **MUST PASS** - No undefined CSS variables allowed
 
 ### 2. TypeScript Compilation
+
 ```bash
 npx tsc --noEmit
 ```
+
 **MUST PASS** - No type errors allowed
 
 ### 3. Build Validation
+
 ```bash
 npm run build
 ```
+
 **MUST PASS** - Production build must succeed
 
 ---
@@ -207,6 +230,7 @@ npm run build
 ### ❌ ANTI-PATTERNS
 
 1. **Using undefined CSS variables**
+
    ```tsx
    // ❌ BAD
    style={{ color: 'var(--new-color)' }}
@@ -219,6 +243,7 @@ npm run build
    ```
 
 2. **Emojis as UI elements**
+
    ```tsx
    // ❌ BAD
    <button>⚙️</button>
@@ -228,6 +253,7 @@ npm run build
    ```
 
 3. **Arbitrary spacing values**
+
    ```tsx
    // ❌ BAD
    style={{ padding: '17px' }}
@@ -237,6 +263,7 @@ npm run build
    ```
 
 4. **Poor contrast ratios**
+
    ```tsx
    // ❌ BAD
    style={{ color: '#999', background: '#ddd' }} // 2.3:1 contrast
@@ -246,6 +273,7 @@ npm run build
    ```
 
 5. **Missing touch targets**
+
    ```tsx
    // ❌ BAD
    <button style={{ width: '24px', height: '24px' }}>×</button>
@@ -257,6 +285,7 @@ npm run build
    ```
 
 6. **No keyboard support**
+
    ```tsx
    // ❌ BAD
    <div onClick={handleClick}>Click me</div>
@@ -270,30 +299,45 @@ npm run build
    ```
 
 7. **Missing loading/error/empty states**
+
    ```tsx
    // ❌ BAD
-   return <div>{data.map(item => <Item key={item.id} {...item} />)}</div>
+   return (
+     <div>
+       {data.map((item) => (
+         <Item key={item.id} {...item} />
+       ))}
+     </div>
+   );
 
    // ✅ GOOD
-   if (loading) return <LoadingState />
-   if (error) return <ErrorState message={error.message} />
-   if (data.length === 0) return <EmptyState />
-   return <div>{data.map(item => <Item key={item.id} {...item} />)}</div>
+   if (loading) return <LoadingState />;
+   if (error) return <ErrorState message={error.message} />;
+   if (data.length === 0) return <EmptyState />;
+   return (
+     <div>
+       {data.map((item) => (
+         <Item key={item.id} {...item} />
+       ))}
+     </div>
+   );
    ```
 
 ---
 
 ## Integration with AI Workflow
 
-**For Claude/AI Assistant:**
+**For Amplifier/AI Assistant:**
 
 Before creating any component, internally run through this checklist. If any check fails:
+
 1. **STOP** - Do not proceed with code generation
 2. **FIX** - Address the issue (define variable, adjust contrast, etc.)
 3. **VALIDATE** - Confirm fix meets requirements
 4. **PROCEED** - Continue with code generation
 
 **The user should never see this checklist in conversation** - it's an internal validation protocol. Only surface issues to the user if:
+
 - There's a conflict between requirements and design principles
 - User input is needed to resolve ambiguity
 - Multiple valid approaches exist and user preference is needed
@@ -312,6 +356,7 @@ Before creating any component, internally run through this checklist. If any che
 ## Automated Pre-Commit Hook (TODO)
 
 Future: Create git pre-commit hook that runs:
+
 ```bash
 #!/bin/bash
 # .git/hooks/pre-commit
@@ -346,6 +391,7 @@ exit 0
 **This protocol exists to ensure quality, not to slow down development.**
 
 The checklist becomes second nature with practice. Initially it may feel like overhead, but it prevents:
+
 - Undefined CSS variable bugs
 - Accessibility issues
 - Inconsistent design system application
