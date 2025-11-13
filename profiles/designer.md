@@ -38,7 +38,7 @@ agents:
     - ./agents
 ---
 
-@foundation:context/shared/common-agent-base.md
+@foundation:context/shared/common-profile-base.md
 @design-intelligence:context/philosophy/DESIGN-PHILOSOPHY.md
 @design-intelligence:context/philosophy/DESIGN-PRINCIPLES.md
 @design-intelligence:context/philosophy/DESIGN-FRAMEWORK.md
